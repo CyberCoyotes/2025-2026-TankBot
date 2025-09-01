@@ -1,0 +1,7 @@
+# Subsystems
+- name: subsystem-drivetrain
+  color: 0e8a16
+- name: subsystem-vision
+  color: 0e8a16
+- name: subsystem-auton
+  color: 0e8a16

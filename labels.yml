@@ -1,0 +1,10 @@
+#repeats
+- name: repeats-yearly
+  color: 5319e7
+  description: Issue/task that repeats yearly
+- name: repeats-monthly
+  color: 5319e7
+  description: Issue/task that repeats monthly
+- name: repeats-weekly
+  color: 5319e7
+  description: Issue/task that repeats weekly
