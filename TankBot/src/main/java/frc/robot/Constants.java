@@ -15,5 +15,13 @@ package frc.robot;
 public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
+
+    
   }
+  public static final int RIGHT_LEAD_ID = 1;    // Right Leader Motor ID - Talon for SIM Motor
+  public static final int RIGHT_FOLLOW_ID = 2;  // Right Follower Motor ID - Talon for SIM Motor
+  public static final int LEFT_LEAD_ID = 3;    // Left Leader Motor ID - Talon for SIM Motor
+  public static final int LEFT_FOLLOW_ID = 4;   // Left Follower Motor ID - Talon for SIM Motor
+  // public static final int CENTER_WHEEL_ID = 5;    // Center Wheel Motor ID - Talon
+
 }
