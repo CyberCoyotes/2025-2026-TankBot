@@ -4,6 +4,7 @@ package frc.robot.subsystems;
 import com.ctre.phoenix6.hardware.TalonFX;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.motorcontrol.Talon;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -13,20 +14,20 @@ public class DriveSubsystem extends SubsystemBase {
      * It provides methods for controlling the drivetrain's movement and rotation.
      */
     private final DifferentialDrive drive;
-    private final TalonFX rightLeaderDrive;
-    private final TalonFX rightFollowerDrive;
-    private final TalonFX leftLeaderDrive;
-    private final TalonFX leftFollowerDrive;
-    private final TalonFX[] motors;
+    private final Talon rightLeaderDrive;
+    private final Talon rightFollowerDrive;
+    private final Talon leftLeaderDrive;
+    private final Talon leftFollowerDrive;
+    private final Talon[] motors;
 
     public DriveSubsystem() {
-        rightLeaderDrive = new TalonFX(Constants.RIGHT_LEADER_ID);
-        rightFollowerDrive = new TalonFX(Constants.RIGHT_FOLLOWER_ID);
-        leftLeaderDrive = new TalonFX(Constants.LEFT_LEADER_ID);
-        leftFollowerDrive = new TalonFX(Constants.LEFT_FOLLOWER_ID);
+        rightLeaderDrive = new Talon(Constants.RIGHT_LEADER_ID);
+        rightFollowerDrive = new Talon(Constants.RIGHT_FOLLOWER_ID);
+        leftLeaderDrive = new Talon(Constants.LEFT_LEADER_ID);
+        leftFollowerDrive = new Talon(Constants.LEFT_FOLLOWER_ID);
 
         
-        motors = new TalonFX[]{
+        motors = new Talon[]{
             rightLeaderDrive, 
             rightFollowerDrive,
             leftLeaderDrive,
