@@ -1,13 +1,16 @@
 /*
- * This command will drive the robot using the drive and turn power values from the joysticks.
- * The left thumbstick will control the forward and backward movement of the robot.
- * The right thumbstick will control the rotation of the robot. 
+ * Enhanced drive command with improved controls and deadband handling.
+ * The left thumbstick controls forward and backward movement.
+ * The right thumbstick controls rotation of the robot.
+ * Includes exponential scaling for finer control at low speeds.
  */
 
 package frc.robot.commands;
 
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.subsystems.DriveSubsystem2;
 
 public class DriveCommand2 extends Command {
@@ -23,22 +26,29 @@ public class DriveCommand2 extends Command {
 
     @Override
     public void execute() {
-        // Apply a deadband to filter out small, unintended joystick movements
-        double drivePower = applyDeadband(-joystick.getRawAxis(1), 0.1);
-        double turnPower = applyDeadband(joystick.getRawAxis(4), 0.1);
+        // Get joystick inputs (inverted Y axis for forward/backward)
+        double drivePower = -joystick.getLeftY();
+        double turnPower = joystick.getRightX();
 
-        // Optional: Apply exponential scaling for finer control
-        drivePower = Math.copySign(Math.pow(Math.abs(drivePower), 2), drivePower);
-        turnPower = Math.copySign(Math.pow(Math.abs(turnPower), 2), turnPower);
+        // Apply deadband using WPILib utility
+        drivePower = MathUtil.applyDeadband(drivePower, DriveConstants.JOYSTICK_DEADBAND);
+        turnPower = MathUtil.applyDeadband(turnPower, DriveConstants.JOYSTICK_DEADBAND);
 
-        subsystem.drive(drivePower, turnPower);
+        // Apply exponential scaling for finer control
+        drivePower = Math.copySign(Math.pow(Math.abs(drivePower), DriveConstants.DRIVE_EXPO), drivePower);
+        turnPower = Math.copySign(Math.pow(Math.abs(turnPower), DriveConstants.TURN_EXPO), turnPower);
+
+        // Drive the robot using arcade drive
+        subsystem.arcadeDrive(drivePower, turnPower);
     }
 
-    private double applyDeadband(double value, double deadband) {
-        if (Math.abs(value) < deadband) {
-            return 0;
-        }
-        return (value - Math.copySign(deadband, value)) / (1.0 - deadband);
+    @Override
+    public void end(boolean interrupted) {
+        subsystem.stop();
     }
 
+    @Override
+    public boolean isFinished() {
+        return false; // This command runs indefinitely
+    }
 }
