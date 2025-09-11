@@ -55,11 +55,11 @@ public class RobotContainer {
 
     // Arcade drive is usually the default command for a drive subsystem.
     m_driveSubsystem.setDefaultCommand(
-        // A split-stick arcade command, with forward/backward controlled by the left
-        // hand, and turning controlled by the right.
+        // A single-stick arcade command, with forward/backward controlled by the left
+        // stick Y-axis, and turning controlled by the left stick X-axis.
         m_driveSubsystem.run(() -> 
             m_driveSubsystem.arcadeDrive(
-                -m_driverController.getLeftY(), m_driverController.getRightX())));
+                -m_driverController.getLeftY(), m_driverController.getLeftX())));
   }
 
   /**
