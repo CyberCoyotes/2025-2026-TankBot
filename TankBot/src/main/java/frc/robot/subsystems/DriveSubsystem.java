@@ -1,6 +1,7 @@
 package frc.robot.subsystems;
 
 import com.ctre.phoenix6.hardware.TalonFX;
+import edu.wpi.first.math.MathUtil;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
@@ -16,6 +17,10 @@ public class DriveSubsystem extends SubsystemBase {
     }
 
     public void arcadeDrive(double forward, double rotation) {
+        // Apply deadband to eliminate controller drift
+        forward = MathUtil.applyDeadband(forward, Constants.Drive.JOYSTICK_DEADBAND);
+        rotation = MathUtil.applyDeadband(rotation, Constants.Drive.JOYSTICK_DEADBAND);
+        
         double leftOutput = forward + rotation;
         double rightOutput = forward - rotation;
         leftLead.set(leftOutput);

@@ -23,6 +23,9 @@ public final class Constants {
     public static final int RIGHT_PRIMARY_ID = 3; // Mechanical Issues
     public static final int RIGHT_SECONDARY_ID = 4; // Mechanical Issues
 
+    // Control constants
+    public static final double JOYSTICK_DEADBAND = 0.1; // 10% deadband for controller drift
+
     // Helper for TalonFX follower setup (Phoenix6 API)
     public static com.ctre.phoenix6.controls.Follower FOLLOW(com.ctre.phoenix6.hardware.TalonFX leader) {
       return new com.ctre.phoenix6.controls.Follower(leader.getDeviceID(), false);
