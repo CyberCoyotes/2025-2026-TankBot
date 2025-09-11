@@ -1,0 +1,38 @@
+{
+    "fileName": "limelight.json",
+    "name": "limelight",
+    "version": "1.4.1",
+    "uuid": "63651f36-b6ab-4da7-bf88-de61b47f3c50",
+    "frcYear": "2025",
+    "mavenUrls": [
+        "https://maven.limelightvision.io/snapshots"
+    ],
+    "jsonUrl": "https://maven.limelightvision.io/snapshots/io/github/limelightvision/limelight-frc-wpilibj/1.4.1/limelight-frc-wpilibj-1.4.1-vendordep.json",
+    "javaDependencies": [
+        {
+            "groupId": "io.github.limelightvision",
+            "artifactId": "limelight-frc-wpilibj",
+            "version": "1.4.1"
+        }
+    ],
+    "jniDependencies": [],
+    "cppDependencies": [
+        {
+            "groupId": "io.github.limelightvision",
+            "artifactId": "limelight-frc-wpilib",
+            "version": "1.4.1",
+            "libName": "limelight",
+            "headerClassifier": "headers",
+            "sharedLibrary": false,
+            "skipInvalidPlatforms": true,
+            "binaryPlatforms": [
+                "windowsx86-64",
+                "linuxx86-64",
+                "linuxarm32",
+                "linuxarm64",
+                "linuxathena",
+                "osxuniversal"
+            ]
+        }
+    ]
+}

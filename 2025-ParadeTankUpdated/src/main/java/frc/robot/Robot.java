@@ -44,6 +44,11 @@ public class Robot extends TimedRobot {
     // and running subsystem periodic() methods.  This must be called from the robot's periodic
     // block in order for anything in the Command-based framework to work.
     CommandScheduler.getInstance().run();
+    
+    // Update odometry with drive subsystem data
+    if (m_robotContainer != null) {
+      m_robotContainer.updateOdometry();
+    }
   }
 
   /** This function is called once each time the robot enters Disabled mode. */
