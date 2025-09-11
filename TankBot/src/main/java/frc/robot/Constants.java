@@ -15,13 +15,18 @@ package frc.robot;
 public final class Constants {
   public static class OperatorConstants {
     public static final int kDriverControllerPort = 0;
-
-    
   }
-  public static final int RIGHT_LEAD_ID = 1;    // Right Leader Motor ID - Talon for SIM Motor
-  public static final int RIGHT_FOLLOW_ID = 2;  // Right Follower Motor ID - Talon for SIM Motor
-  public static final int LEFT_LEAD_ID = 3;    // Left Leader Motor ID - Talon for SIM Motor
-  public static final int LEFT_FOLLOW_ID = 4;   // Left Follower Motor ID - Talon for SIM Motor
-  // public static final int CENTER_WHEEL_ID = 5;    // Center Wheel Motor ID - Talon
+
+  public static final class Drive {
+    public static final int LEFT_LEADER_ID = 3;
+    public static final int LEFT_FOLLOWER_ID = 4;
+    public static final int RIGHT_LEADER_ID = 1;
+    public static final int RIGHT_FOLLOWER_ID = 2;
+
+    // Helper for TalonFX follower setup (Phoenix6 API)
+    public static com.ctre.phoenix6.controls.Follower FOLLOW(com.ctre.phoenix6.hardware.TalonFX leader) {
+      return new com.ctre.phoenix6.controls.Follower(leader.getDeviceID(), false);
+    }
+  }
 
 }
