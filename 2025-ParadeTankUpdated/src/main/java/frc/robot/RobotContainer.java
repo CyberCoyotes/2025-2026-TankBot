@@ -15,8 +15,10 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.commands.AutoAimCommand;
 import frc.robot.commands.AutoBalanceCommand;
+import frc.robot.commands.AprilTagTrackingCommand;
 import frc.robot.commands.DriveCommand2;
 import frc.robot.commands.DriveDistanceCommand;
+import frc.robot.commands.FieldNavigationCommand;
 import frc.robot.commands.TurnToAngleCommand;
 import frc.robot.subsystems.DriveSubsystem2;
 import frc.robot.subsystems.NavigationSubsystem;
@@ -79,6 +81,19 @@ public class RobotContainer {
             
         new JoystickButton(driverController, XboxController.Button.kY.value)
             .whileTrue(new AutoAimCommand(driveSubsystem, visionSubsystem));
+            
+        // Left and right bumpers for precise turns
+        new JoystickButton(driverController, XboxController.Button.kLeftBumper.value)
+            .whileTrue(new TurnToAngleCommand(driveSubsystem, navigationSubsystem, 
+                       navigationSubsystem.getHeading() - 90.0));
+                       
+        new JoystickButton(driverController, XboxController.Button.kRightBumper.value)
+            .whileTrue(new TurnToAngleCommand(driveSubsystem, navigationSubsystem, 
+                       navigationSubsystem.getHeading() + 90.0));
+                       
+        // Start button for AprilTag tracking
+        new JoystickButton(driverController, XboxController.Button.kStart.value)
+            .whileTrue(new AprilTagTrackingCommand(driveSubsystem, visionSubsystem, 1.5));
         
         // Operator controller bindings
         new JoystickButton(operatorController, XboxController.Button.kA.value)
@@ -132,6 +147,16 @@ public class RobotContainer {
             new WaitCommand(1.0)
         );
         
+        Command aprilTagTrack = new AprilTagTrackingCommand(driveSubsystem, visionSubsystem, 2.0);
+        
+        // Get pre-built complex sequences
+        Command driveAndBalance = FieldNavigationCommand.driveAndBalance(driveSubsystem, navigationSubsystem);
+        Command visionAutonomous = FieldNavigationCommand.visionAutonomous(driveSubsystem, navigationSubsystem, visionSubsystem);
+        Command complexNavigation = FieldNavigationCommand.complexNavigation(driveSubsystem, navigationSubsystem, visionSubsystem);
+        Command defensiveAuto = FieldNavigationCommand.defensiveAutonomous(driveSubsystem, navigationSubsystem);
+        Command mobilityAuto = FieldNavigationCommand.mobilityAutonomous(driveSubsystem);
+        Command systemTest = FieldNavigationCommand.systemTest(driveSubsystem, navigationSubsystem, visionSubsystem);
+        
         // Add options to chooser
         autonomousChooser.setDefaultOption("Do Nothing", new WaitCommand(15));
         autonomousChooser.addOption("Drive Forward 2m", driveForward2m);
@@ -143,6 +168,12 @@ public class RobotContainer {
         autonomousChooser.addOption("Drive and Balance", driveAndBalance);
         autonomousChooser.addOption("Square Pattern", squarePattern);
         autonomousChooser.addOption("Vision Aim Test", visionAim);
+        autonomousChooser.addOption("AprilTag Tracking", aprilTagTrack);
+        autonomousChooser.addOption("Vision Autonomous", visionAutonomous);
+        autonomousChooser.addOption("Complex Navigation", complexNavigation);
+        autonomousChooser.addOption("Defensive Auto", defensiveAuto);
+        autonomousChooser.addOption("Mobility Auto", mobilityAuto);
+        autonomousChooser.addOption("System Test", systemTest);
         
         // Put chooser on dashboard
         SmartDashboard.putData("Auto Chooser", autonomousChooser);
