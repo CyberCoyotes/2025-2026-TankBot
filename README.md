@@ -60,7 +60,7 @@ FRC robot code in Java using a comprehensive command-based framework with advanc
 
 ### Driver Controller (Xbox Controller Port 0)
 - **Left Stick Y**: Forward/backward drive
-- **Right Stick X**: Rotation
+- **Left Stick X**: Rotation
 - **A Button**: Reset gyro heading
 - **B Button**: Reset drive encoders
 - **X Button**: Auto-balance mode
