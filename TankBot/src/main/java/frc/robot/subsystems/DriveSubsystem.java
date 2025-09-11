@@ -17,7 +17,7 @@ public class DriveSubsystem extends SubsystemBase {
 
     public void arcadeDrive(double forward, double rotation) {
         double leftOutput = forward + rotation;
-        double rightOutput = forward - rotation;
+        // double rightOutput = forward - rotation;
         leftLead.set(leftOutput);
         // rightLead.set(rightOutput);
     }
