@@ -1,3 +1,10 @@
 *.lock
 *.properties
 *.bin
+2025-ParadeTankUpdated/.gradle/file-system.probe
+*.dll
+*.pdb
+*.class
+*.jar
+*.MF
+*.probe
