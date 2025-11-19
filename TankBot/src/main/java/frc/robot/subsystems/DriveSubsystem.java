@@ -7,25 +7,35 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class DriveSubsystem extends SubsystemBase {
-    private final TalonFX leftLead = new TalonFX(Constants.Drive.LEFT_PRIMARY_ID);
-    private final TalonFX leftFollow = new TalonFX(Constants.Drive.LEFT_SECONDARY_ID);
-    private final TalonFX rightLead = new TalonFX(Constants.Drive.RIGHT_PRIMARY_ID);
-    private final TalonFX rightFollow = new TalonFX(Constants.Drive.RIGHT_SECONDARY_ID);
+    // Left side motors (3 Falcon 500s for tank treads)
+    private final TalonFX leftLeader = new TalonFX(Constants.Drive.LEFT_LEADER_ID);
+    private final TalonFX leftFollower1 = new TalonFX(Constants.Drive.LEFT_FOLLOWER_1_ID);
+    private final TalonFX leftFollower2 = new TalonFX(Constants.Drive.LEFT_FOLLOWER_2_ID);
+
+    // Right side motors (3 Falcon 500s for tank treads)
+    private final TalonFX rightLeader = new TalonFX(Constants.Drive.RIGHT_LEADER_ID);
+    private final TalonFX rightFollower1 = new TalonFX(Constants.Drive.RIGHT_FOLLOWER_1_ID);
+    private final TalonFX rightFollower2 = new TalonFX(Constants.Drive.RIGHT_FOLLOWER_2_ID);
 
     public DriveSubsystem() {
-        leftFollow.setControl(Constants.Drive.FOLLOW(leftLead));
-        rightFollow.setControl(Constants.Drive.FOLLOW(rightLead));
+        // Configure left side followers
+        leftFollower1.setControl(Constants.Drive.FOLLOW(leftLeader));
+        leftFollower2.setControl(Constants.Drive.FOLLOW(leftLeader));
+
+        // Configure right side followers
+        rightFollower1.setControl(Constants.Drive.FOLLOW(rightLeader));
+        rightFollower2.setControl(Constants.Drive.FOLLOW(rightLeader));
     }
 
     public void arcadeDrive(double forward, double rotation) {
         double leftOutput = forward + rotation;
         double rightOutput = forward - rotation;
-        leftLead.set(leftOutput);
-        rightLead.set(rightOutput);
+        leftLeader.set(leftOutput);
+        rightLeader.set(rightOutput);
     }
 
     public void stop() {
-        leftLead.set(0);
-        rightLead.set(0);
+        leftLeader.set(0);
+        rightLeader.set(0);
     }
 }
