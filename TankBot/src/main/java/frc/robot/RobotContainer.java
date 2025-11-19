@@ -53,9 +53,24 @@ public class RobotContainer {
     m_driveSubsystem.setDefaultCommand(
         // A single-stick arcade command, with forward/backward controlled by the left
         // stick Y-axis, and turning controlled by the left stick X-axis.
-        m_driveSubsystem.run(() -> 
+        m_driveSubsystem.run(() ->
             m_driveSubsystem.arcadeDrive(
                 -m_driverController.getLeftY(), m_driverController.getLeftX())));
+
+    // Drive mode controls - toggle through modes with back button
+    m_driverController.back()
+        .onTrue(m_driveSubsystem.runOnce(() -> m_driveSubsystem.toggleDriveMode()));
+
+    // Alternative: Direct mode selection buttons (commented out, uncomment if preferred)
+    // m_driverController.x()
+    //     .onTrue(m_driveSubsystem.runOnce(() ->
+    //         m_driveSubsystem.setDriveMode(DriveSubsystem.DriveMode.PRECISION)));
+    // m_driverController.y()
+    //     .onTrue(m_driveSubsystem.runOnce(() ->
+    //         m_driveSubsystem.setDriveMode(DriveSubsystem.DriveMode.TURTLE)));
+    // m_driverController.b()
+    //     .onTrue(m_driveSubsystem.runOnce(() ->
+    //         m_driveSubsystem.setDriveMode(DriveSubsystem.DriveMode.NORMAL)));
   }
 
   /**

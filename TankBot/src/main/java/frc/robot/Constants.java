@@ -31,6 +31,11 @@ public final class Constants {
     public static final int RIGHT_FOLLOWER_1_ID = 5;
     public static final int RIGHT_FOLLOWER_2_ID = 6;
 
+    // Drive mode speed multipliers
+    public static final double NORMAL_SPEED_MULTIPLIER = 1.0;    // 100% speed
+    public static final double PRECISION_SPEED_MULTIPLIER = 0.5;  // 50% speed for fine control
+    public static final double TURTLE_SPEED_MULTIPLIER = 0.25;    // 25% speed for very slow movement
+
     // Helper for TalonFX follower setup (Phoenix6 API)
     public static Follower FOLLOW(TalonFX leader) {
       return new Follower(leader.getDeviceID(), false);
