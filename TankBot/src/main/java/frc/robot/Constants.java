@@ -4,6 +4,9 @@
 
 package frc.robot;
 
+import com.ctre.phoenix6.controls.Follower;
+import com.ctre.phoenix6.hardware.TalonFX;
+
 /**
  * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
  * constants. This class should not be used for any other purpose. All constants should be declared
@@ -24,8 +27,8 @@ public final class Constants {
     public static final int RIGHT_SECONDARY_ID = 4; // Mechanical Issues
 
     // Helper for TalonFX follower setup (Phoenix6 API)
-    public static com.ctre.phoenix6.controls.Follower FOLLOW(com.ctre.phoenix6.hardware.TalonFX leader) {
-      return new com.ctre.phoenix6.controls.Follower(leader.getDeviceID(), false);
+    public static Follower FOLLOW(TalonFX leader) {
+      return new Follower(leader.getDeviceID(), false);
     }
   }
 
