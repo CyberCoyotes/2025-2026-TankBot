@@ -21,10 +21,15 @@ public final class Constants {
   }
 
   public static final class Drive {
-    public static final int LEFT_PRIMARY_ID = 1;
-    public static final int LEFT_SECONDARY_ID = 2;
-    public static final int RIGHT_PRIMARY_ID = 3; // Mechanical Issues
-    public static final int RIGHT_SECONDARY_ID = 4; // Mechanical Issues
+    // Left side motors (3 Falcon 500s)
+    public static final int LEFT_LEADER_ID = 1;
+    public static final int LEFT_FOLLOWER_1_ID = 2;
+    public static final int LEFT_FOLLOWER_2_ID = 3;
+
+    // Right side motors (3 Falcon 500s)
+    public static final int RIGHT_LEADER_ID = 4;
+    public static final int RIGHT_FOLLOWER_1_ID = 5;
+    public static final int RIGHT_FOLLOWER_2_ID = 6;
 
     // Helper for TalonFX follower setup (Phoenix6 API)
     public static Follower FOLLOW(TalonFX leader) {
