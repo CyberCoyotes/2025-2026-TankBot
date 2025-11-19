@@ -31,6 +31,9 @@ public final class Constants {
     public static final int RIGHT_FOLLOWER_1_ID = 5;
     public static final int RIGHT_FOLLOWER_2_ID = 6;
 
+    // Pigeon2 Gyro
+    public static final int PIGEON2_ID = 10;  // CAN ID for Pigeon2 gyro
+
     // Drive mode speed multipliers
     public static final double NORMAL_SPEED_MULTIPLIER = 1.0;    // 100% speed
     public static final double PRECISION_SPEED_MULTIPLIER = 0.5;  // 50% speed for fine control

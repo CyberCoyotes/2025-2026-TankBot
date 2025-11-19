@@ -61,6 +61,10 @@ public class RobotContainer {
     m_driverController.back()
         .onTrue(m_driveSubsystem.runOnce(() -> m_driveSubsystem.toggleDriveMode()));
 
+    // Gyro reset - press start button to reset gyro heading to 0
+    m_driverController.start()
+        .onTrue(m_driveSubsystem.runOnce(() -> m_driveSubsystem.resetGyro()));
+
     // Alternative: Direct mode selection buttons (commented out, uncomment if preferred)
     // m_driverController.x()
     //     .onTrue(m_driveSubsystem.runOnce(() ->
